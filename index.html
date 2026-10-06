@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ふるさと納税 上限額シミュレーター【令和8年・2026年】年収と家族構成から控除上限を計算</title>
+<meta name="description" content="年収と家族構成を入れるだけで、ふるさと納税で自己負担2,000円に収まる寄附額の上限（控除上限額）の目安が分かる無料ツール。令和8年分の基礎控除・給与所得控除の引き上げと、令和8年度からの住民税の特例控除の計算方法に対応。所得税・住民税の控除の内訳も表示します。">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://webtools-labs.com/furusato-nozei-keisan/">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2370765779014113" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NKK5TXCQEK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NKK5TXCQEK');
+</script>
+<script>
+(function () {
+  var fired = false;
+  function fireOnce() {
+    if (fired) return;
+    fired = true;
+    if (typeof gtag === 'function') gtag('event', 'tool_used', { tool_name: document.title });
+  }
+  document.addEventListener('input', fireOnce, true);
+  document.addEventListener('change', fireOnce, true);
+})();
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f766e'/%3E%3Ctext x='50' y='68' font-size='60' text-anchor='middle' fill='white' font-family='sans-serif'%3E%EF%BF%A5%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="webtools-labs">
+<meta property="og:title" content="ふるさと納税 上限額シミュレーター【令和8年】">
+<meta property="og:description" content="年収と家族構成を入れるだけで、ふるさと納税の控除上限額の目安が分かります。令和8年の税制改正に対応。">
+<meta property="og:url" content="https://webtools-labs.com/furusato-nozei-keisan/">
+<meta property="og:image" content="https://webtools-labs.com/furusato-nozei-keisan/og-image.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ふるさと納税 上限額シミュレーター【令和8年】">
+<meta name="twitter:description" content="自己負担2,000円で寄附できる上限額を、年収と家族構成から計算できる無料ツール。">
+<meta name="twitter:image" content="https://webtools-labs.com/furusato-nozei-keisan/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ふるさと納税 上限額シミュレーター",
+  "url": "https://webtools-labs.com/furusato-nozei-keisan/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "description": "年収と家族構成から、ふるさと納税の控除上限額（自己負担2,000円で寄附できる額）の目安を計算できる無料ツール。令和8年分の税制改正に対応。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+  "inLanguage": "ja"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "ふるさと納税の上限額（控除上限額）とは何ですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "自己負担2,000円を除いた全額が所得税・住民税から差し引かれる、寄附額の上限の目安です。上限を超えて寄附した分は控除されず、ただの自己負担になります。上限は年収や家族構成、社会保険料、ほかの控除によって決まります。" }
+    },
+    {
+      "@type": "Question",
+      "name": "令和8年（2026年）は上限額が変わりますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "令和8年分は所得税の基礎控除（最大104万円）と給与所得控除の最低額（74万円）が引き上げられました。住民税の基礎控除は43万円のままなので、上限額の土台になる住民税の所得割はほとんど変わりません。ただし所得税率が下がる人（例: 年収500万円の独身で10%→5%）は、住民税が負担する割合が増えるため、上限額が数千円下がることがあります。" }
+    },
+    {
+      "@type": "Question",
+      "name": "上限額はどうやって計算されていますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "「住民税所得割額 × 20% ÷（90% − 所得税率 × 1.021）＋ 2,000円」で計算しています。所得税率は、令和8年度からの地方税法のルールにもとづき「住民税の課税所得 − 人的控除の差 −（所得税の基礎控除額 − 48万円）」の金額で判定しています。所得割額は調整控除を差し引いた後の額です。" }
+    },
+    {
+      "@type": "Question",
+      "name": "ワンストップ特例と確定申告で上限額は変わりますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "変わりません。ワンストップ特例を使うと所得税の還付分も含めて住民税から差し引かれますが、合計の控除額は確定申告した場合と同じです。ワンストップ特例は、寄附先が5自治体以内で、確定申告をしない会社員などが使えます。申請書は寄附した翌年の1月10日（必着）までに提出します。" }
+    },
+    {
+      "@type": "Question",
+      "name": "住宅ローン控除や医療費控除があると上限額はどうなりますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "医療費控除やiDeCoなどの所得控除は、課税所得が減るため上限額が下がります。本ツールでは「その他の所得控除」に年間の金額を入れると反映されます。住宅ローン控除は税額控除なので本ツールでは計算していませんが、所得税から引ききれず住民税から差し引かれる場合でも、ふるさと納税の上限額への影響は小さいのが一般的です。" }
+    },
+    {
+      "@type": "Question",
+      "name": "いつまでに寄附すればいいですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "令和8年分の控除を受けるには、2026年12月31日までに寄附（決済）を済ませる必要があります。年末は申し込みが集中し、決済方法によっては翌年の扱いになることもあるので、余裕をもって申し込むのがおすすめです。年収が確定していない場合は、上限額ぎりぎりではなく少し余裕をもたせておくと安心です。" }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://webtools-labs.com/" },
+    { "@type": "ListItem", "position": 2, "name": "ふるさと納税 上限額シミュレーター" }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #ffffff;
+  --surface-2: #f7f7f7;
+  --ink: #1a1a1a;
+  --muted: #767676;
+  --line: #e3e3e3;
+  --accent: #0f766e;
+  --best-bg: #f0f8f6;
+  --warn-bg: #fff7ed;
+  --warn-ink: #9a5b00;
+  --bad-bg: #fef2f2;
+  --bad-ink: #b91c1c;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+.page { max-width: 720px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+header.masthead { margin-bottom: 1.5rem; }
+h1 {
+  font-weight: 700;
+  font-size: clamp(1.4rem, 4.5vw, 1.7rem);
+  margin: 0 0 0.7rem;
+  letter-spacing: 0.01em;
+}
+p.lede { color: var(--muted); margin: 0; max-width: 60ch; font-size: 0.95rem; }
+.updated-note { display: block; margin-top: 0.9rem; font-size: 0.78rem; color: var(--muted); }
+
+.notice-box {
+  background: var(--warn-bg); color: var(--warn-ink); border-radius: 8px;
+  padding: 0.9rem 1.1rem; font-size: 0.85rem; margin-bottom: 2rem;
+}
+
+section { margin-bottom: 2.5rem; }
+h2 { font-size: 1.05rem; font-weight: 700; margin: 0 0 1rem; }
+
+.field-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; }
+.field { flex: 1; min-width: 160px; }
+.field label { display: block; font-size: 0.83rem; color: var(--muted); margin-bottom: 0.35rem; }
+.check-row { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.9rem; margin: 0 0 1.25rem; }
+.check-row input { width: 1.1rem; height: 1.1rem; margin-top: 0.25rem; accent-color: var(--accent); }
+.field-group { font-size: 0.85rem; font-weight: 700; margin: 0.4rem 0 0.5rem; }
+.field input[type="number"], .field select {
+  width: 100%; font-variant-numeric: tabular-nums; font-size: 1.05rem; font-family: inherit;
+  padding: 0.55rem 0.7rem; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--bg); color: var(--ink);
+}
+.field input:focus, .field select:focus { outline: none; border-color: var(--accent); }
+
+.status-box { border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 1.25rem; font-size: 0.92rem; }
+.status-box.ok { background: var(--best-bg); color: var(--ink); }
+.status-box.bad { background: var(--bad-bg); color: var(--bad-ink); }
+.status-box strong { font-size: 1.1rem; }
+
+.summary-cards { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+.summary-card {
+  flex: 1; min-width: 180px; background: var(--surface-2); border-radius: 10px;
+  padding: 1rem 1.2rem;
+}
+.summary-card .label { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; }
+.summary-card .value { font-size: 1.4rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.summary-card .sub { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+
+table.compare { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+table.compare th, table.compare td {
+  padding: 0.55rem 0.5rem; text-align: right; border-bottom: 1px solid var(--line); vertical-align: top;
+}
+table.compare th:first-child, table.compare td:first-child { text-align: left; }
+table.compare thead th { color: var(--muted); font-weight: 500; font-size: 0.78rem; }
+table.compare td.num { font-variant-numeric: tabular-nums; }
+tr.total td { font-weight: 700; }
+tr.total { background: var(--best-bg); }
+
+.ref-table { overflow-x: auto; }
+.ref-table table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 460px; }
+.ref-table th, .ref-table td { padding: 0.5rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; }
+.ref-table td.num { font-variant-numeric: tabular-nums; text-align: right; }
+.ref-table tr.highlight td { background: var(--best-bg); font-weight: 700; }
+.ref-table-scroll { max-height: 420px; overflow-y: auto; }
+
+.disclaimer { font-size: 0.78rem; color: var(--muted); margin-top: 1rem; }
+
+.share-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.1rem; }
+.share-btn {
+  display: inline-flex; align-items: center; padding: 0.5rem 1rem; border-radius: 999px;
+  color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 700;
+}
+.share-btn:hover { opacity: 0.85; }
+.share-x { background: #000; }
+.share-line { background: #06c755; }
+.share-fb { background: #1877f2; }
+.share-hatena { background: #00a4de; }
+
+.ad-slot { margin: 2.5rem 0; text-align: center; min-height: 100px; }
+
+.pr-box {
+  border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 10px;
+  padding: 1.2rem 1.3rem; margin: 2.5rem 0; background: var(--best-bg);
+}
+.pr-box .pr-label {
+  display: inline-flex; align-items: center; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em;
+  color: #fff; background: var(--accent); border-radius: 999px;
+  padding: 0.2rem 0.7rem; margin-bottom: 0.8rem;
+}
+.pr-box p.pr-lede { color: var(--ink); font-size: 0.92rem; margin: 0 0 1rem; max-width: none; line-height: 1.7; }
+.pr-box .pr-banner { text-align: center; }
+.pr-box .pr-cta {
+  display: inline-block; background: var(--accent); color: #fff; font-weight: 700;
+  font-size: 0.85rem; padding: 0.6rem 1.3rem; border-radius: 999px; text-decoration: none;
+}
+.pr-box .pr-cta:hover { opacity: 0.85; }
+
+.contact-box textarea {
+  width: 100%; min-height: 6rem; font-family: inherit; font-size: 0.92rem;
+  padding: 0.7rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink);
+  resize: vertical; margin-bottom: 0.6rem;
+}
+.contact-box input[type="email"] {
+  width: 100%; font-family: inherit; font-size: 0.92rem;
+  padding: 0.6rem 0.7rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+.contact-box textarea:focus, .contact-box input:focus { outline: none; border-color: var(--accent); }
+.contact-box button {
+  font-family: inherit; font-weight: 700; font-size: 0.9rem; padding: 0.6rem 1.4rem;
+  border: none; border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer;
+}
+.contact-box button:disabled { opacity: 0.5; cursor: not-allowed; }
+.contact-status { font-size: 0.85rem; margin-top: 0.6rem; }
+.contact-status.ok { color: var(--accent); }
+.contact-status.err { color: #b91c1c; }
+
+footer.site-footer {
+  margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+  font-size: 0.78rem; color: var(--muted);
+}
+footer.site-footer p { margin: 0 0 0.5rem; }
+footer.site-footer a { color: var(--accent); }
+
+.faq-item { border-bottom: 1px solid var(--line); padding: 0.9rem 0; }
+.faq-item:last-child { border-bottom: none; }
+.faq-item summary {
+  cursor: pointer; font-weight: 700; font-size: 0.92rem; list-style: none;
+  position: relative; padding-right: 1.6rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+'; position: absolute; right: 0; top: 0; color: var(--accent); font-weight: 700; font-size: 1.1rem;
+}
+.faq-item[open] summary::after { content: '−'; }
+.faq-item p { margin: 0.7rem 0 0; color: var(--muted); font-size: 0.88rem; }
+.breadcrumb { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.1rem; }
+.breadcrumb a { color: var(--accent); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="page">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><a href="https://webtools-labs.com/">ホーム</a> / ふるさと納税 上限額シミュレーター</nav>
+  <header class="masthead">
+    <h1>ふるさと納税 上限額シミュレーター【令和8年】</h1>
+    <p class="lede">年収（額面）と家族構成を入れるだけで、自己負担2,000円に収まるふるさと納税の上限額（控除上限額）の目安が分かります。所得税・住民税からいくら戻るかの内訳も表示します。</p>
+    <span class="updated-note">制度 最終確認日: 2026年10月6日（令和8年分の所得税・令和9年度の住民税。総務省の目安表の計算方法・地方税法の特例控除のルールにもとづく）</span>
+    <p class="ad-disclosure" style="font-size:0.75rem;opacity:0.7;margin:0.5rem 0 0;">※当サイトはアフィリエイト広告（PR）を利用しています。</p>
+  </header>
+
+  <div class="notice-box">
+    ⚠️ 令和8年分（2026年）は所得税の基礎控除（最大104万円）と給与所得控除（最低74万円）が引き上げられました。上限額の土台になる住民税はほぼ変わりませんが、<strong>所得税率が下がる人は、上限額が改正前より数千円下がる</strong>ことがあります（例: 年収500万円・独身で約61,000円→約57,000円）。2026年分の寄附は<strong>12月31日まで</strong>です。
+  </div>
+
+  <section>
+    <h2>上限額を計算</h2>
+    <div class="field-row">
+      <div class="field">
+        <label for="income">年収（給与の額面・円）</label>
+        <input type="number" id="income" min="0" step="10000" value="5000000">
+      </div>
+      <div class="field">
+        <label for="social">社会保険料（年間・円。空欄なら年収の15%で概算）</label>
+        <input type="number" id="social" min="0" step="1000" placeholder="例: 750000">
+      </div>
+    </div>
+    <label class="check-row"><input type="checkbox" id="spouse"><span>配偶者控除の対象になる配偶者がいる（配偶者の年収が136万円以下）</span></label>
+    <div class="field-row">
+      <div class="field">
+        <label for="general">16〜18歳・23〜69歳の扶養親族（人）</label>
+        <input type="number" id="general" min="0" max="10" step="1" value="0">
+      </div>
+      <div class="field">
+        <label for="tokutei">19〜22歳の扶養親族（人。大学生など）</label>
+        <input type="number" id="tokutei" min="0" max="10" step="1" value="0">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="other">その他の所得控除（年間・円。iDeCo・生命保険料控除・医療費控除など）</label>
+        <input type="number" id="other" min="0" step="1000" value="0">
+      </div>
+    </div>
+    <p class="disclaimer" style="margin-top:0">16歳未満の子どもは扶養控除の対象外のため、人数に入れなくても上限額は変わりません。共働きで配偶者に収入がある場合は、配偶者のチェックを外してください。</p>
+
+    <div class="summary-cards" id="summaryCards"></div>
+    <div style="overflow-x:auto">
+      <table class="compare">
+        <thead><tr><th>上限額まで寄附したときの内訳</th><th class="num">金額</th></tr></thead>
+        <tbody id="resultBody"></tbody>
+      </table>
+    </div>
+    <p class="disclaimer">上限額は「住民税所得割額 × 20% ÷（90% − 所得税率 × 1.021）＋ 2,000円」で計算した目安で、1,000円未満を切り捨てています。住民税は標準税率（10%）、配偶者特別控除・住宅ローン控除は考慮していません。年収が確定していない場合は、少し余裕をもたせて寄附してください。</p>
+    <div class="share-row" id="shareRow">
+      <a class="share-btn share-x" id="shareX" href="#" target="_blank" rel="noopener">𝕏でシェア</a>
+      <a class="share-btn share-line" id="shareLine" href="#" target="_blank" rel="noopener">LINEで送る</a>
+      <a class="share-btn share-fb" id="shareFb" href="#" target="_blank" rel="noopener">Facebookでシェア</a>
+      <a class="share-btn share-hatena" id="shareHatena" href="#" target="_blank" rel="noopener">はてブする</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>年収・家族構成別の上限額 早見表（令和8年分）</h2>
+    <p>本ツールと同じ計算方法で、社会保険料を年収の15%として計算した目安です。「夫婦」は配偶者控除の対象になる配偶者がいる場合、「共働き」は配偶者に収入があり扶養に入っていない場合です。</p>
+    <div class="ref-table" style="overflow-x:auto">
+      <table>
+        <thead><tr><th>年収</th><th class="num">独身・共働き</th><th class="num">夫婦</th><th class="num">共働き＋子1人（高校生）</th><th class="num">夫婦＋子1人（高校生）</th><th class="num">夫婦＋子1人（大学生）</th></tr></thead>
+        <tbody>
+          <tr><td>300万円</td><td class="num">28,000円</td><td class="num">19,000円</td><td class="num">19,000円</td><td class="num">11,000円</td><td class="num">6,000円</td></tr>
+          <tr><td>350万円</td><td class="num">34,000円</td><td class="num">26,000円</td><td class="num">26,000円</td><td class="num">18,000円</td><td class="num">13,000円</td></tr>
+          <tr><td>400万円</td><td class="num">42,000円</td><td class="num">33,000円</td><td class="num">33,000円</td><td class="num">25,000円</td><td class="num">21,000円</td></tr>
+          <tr><td>450万円</td><td class="num">49,000円</td><td class="num">41,000円</td><td class="num">41,000円</td><td class="num">33,000円</td><td class="num">28,000円</td></tr>
+          <tr><td>500万円</td><td class="num">57,000円</td><td class="num">49,000円</td><td class="num">49,000円</td><td class="num">40,000円</td><td class="num">36,000円</td></tr>
+          <tr><td>550万円</td><td class="num">69,000円</td><td class="num">57,000円</td><td class="num">57,000円</td><td class="num">48,000円</td><td class="num">44,000円</td></tr>
+          <tr><td>600万円</td><td class="num">77,000円</td><td class="num">69,000円</td><td class="num">69,000円</td><td class="num">57,000円</td><td class="num">54,000円</td></tr>
+          <tr><td>650万円</td><td class="num">85,000円</td><td class="num">77,000円</td><td class="num">77,000円</td><td class="num">68,000円</td><td class="num">62,000円</td></tr>
+          <tr><td>700万円</td><td class="num">108,000円</td><td class="num">86,000円</td><td class="num">86,000円</td><td class="num">78,000円</td><td class="num">75,000円</td></tr>
+          <tr><td>800万円</td><td class="num">129,000円</td><td class="num">120,000円</td><td class="num">120,000円</td><td class="num">110,000円</td><td class="num">93,000円</td></tr>
+          <tr><td>900万円</td><td class="num">152,000円</td><td class="num">143,000円</td><td class="num">143,000円</td><td class="num">133,000円</td><td class="num">130,000円</td></tr>
+          <tr><td>1,000万円</td><td class="num">177,000円</td><td class="num">167,000円</td><td class="num">167,000円</td><td class="num">158,000円</td><td class="num">154,000円</td></tr>
+          <tr><td>1,200万円</td><td class="num">236,000円</td><td class="num">236,000円</td><td class="num">226,000円</td><td class="num">226,000円</td><td class="num">222,000円</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer">高校生は一般の扶養親族（16〜18歳）、大学生は19〜22歳の特定扶養親族として計算しています。中学生以下の子どもは上限額に影響しません。年収が約1,195万円を超える（合計所得金額が1,000万円を超える）と配偶者控除が受けられなくなるため、「夫婦」と「独身・共働き」の上限額が同じになります。</p>
+  </section>
+
+  <section>
+    <h2>令和8年の税制改正で上限額はどう変わる？</h2>
+    <p>令和8年分は所得税の基礎控除が大きく引き上げられ、所得税の課税所得が減りました。一方、ふるさと納税の控除の大部分を占める住民税の「特例分」は、住民税の所得割額の20%が上限で、住民税の基礎控除（43万円）は変わっていません。そのため上限額はほぼ同じ水準ですが、所得税率の区分が下がる人は、所得税から戻る割合が減るぶん住民税の特例分の上限に早く届き、上限額が少し下がります。</p>
+    <div class="ref-table">
+      <table>
+        <thead><tr><th>年収（独身）</th><th class="num">改正前の条件</th><th class="num">令和8年分</th><th class="num">差</th></tr></thead>
+        <tbody>
+          <tr><td>400万円</td><td class="num">42,000円</td><td class="num">42,000円</td><td class="num">変わらない</td></tr>
+          <tr><td>450万円</td><td class="num">52,000円</td><td class="num">49,000円</td><td class="num">−3,000円</td></tr>
+          <tr><td>500万円</td><td class="num">61,000円</td><td class="num">57,000円</td><td class="num">−4,000円</td></tr>
+          <tr><td>550万円</td><td class="num">69,000円</td><td class="num">69,000円</td><td class="num">変わらない</td></tr>
+          <tr><td>600万円</td><td class="num">77,000円</td><td class="num">77,000円</td><td class="num">変わらない</td></tr>
+          <tr><td>700万円</td><td class="num">108,000円</td><td class="num">108,000円</td><td class="num">変わらない</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer">「改正前の条件」は、給与所得控除の最低額55万円・所得税の基礎控除48万円で計算した値で、総務省ふるさと納税ポータルサイトの目安表と同じ計算方法です。令和8年度からは、特例控除の割合を決めるときに「所得税の基礎控除額 − 48万円」も差し引くルールになっています（<a href="https://www.city.chiyoda.lg.jp/koho/kurashi/zekin/juminze/furusatonozei-seido-shinkoku.html" target="_blank" rel="noopener">千代田区「ふるさと納税の制度と申告」</a>）。</p>
+  </section>
+
+  <section>
+    <h2>計算例: 年収500万円・独身の場合</h2>
+    <p>社会保険料を75万円（年収の15%）とすると、住民税の課税所得は約238万円、調整控除後の所得割額は約235,500円です。特例控除の割合を決める金額は約177万円なので所得税率は5%となり、上限額は次のとおりです。</p>
+    <div class="ref-table">
+      <table>
+        <tbody>
+          <tr><td>235,500円 × 20% ÷（90% − 5% × 1.021）＋ 2,000円</td><td class="num">約57,000円</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer">57,000円を寄附すると、2,000円を除く55,000円が所得税・住民税から差し引かれます（確定申告をした場合は、所得税の還付と翌年度の住民税の減額に分かれます）。</p>
+  </section>
+
+  <section>
+    <h2>ワンストップ特例と確定申告</h2>
+    <p>会社員で確定申告をしない人は、寄附先が5自治体以内なら「ワンストップ特例」が使えます。寄附のたびに申請書（またはオンライン申請）を寄附先に送るだけで、翌年度の住民税から控除されます。期限は寄附した翌年の1月10日（必着）です。</p>
+    <p>6自治体以上に寄附した場合や、医療費控除・副業などで確定申告をする場合は、ワンストップ特例の申請は無効になり、確定申告でふるさと納税も申告する必要があります。どちらの方法でも、控除される合計額は同じです。</p>
+  </section>
+
+  <div class="pr-box">
+    <span class="pr-label">次のステップ</span>
+    <p class="pr-lede">ふるさと納税の控除は、翌年度（2027年6月から）の住民税に反映されます。今の住民税がいくらか、iDeCoや生命保険料控除で税金をどれだけ減らせるかもあわせて確認してみましょう。</p>
+    <div class="pr-banner">
+      <a href="https://webtools-labs.com/juminzei-keisan/" class="pr-cta">住民税 計算ツール</a>
+      <a href="https://webtools-labs.com/ideco-setsuzei-keisan/" class="pr-cta" style="margin-left:0.6rem;">iDeCo 節税シミュレーター</a>
+      <a href="https://webtools-labs.com/nencho-kanpu-keisan/" class="pr-cta" style="margin-left:0.6rem;">年末調整 還付金シミュレーター</a>
+    </div>
+  </div>
+
+  <div class="ad-slot">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-2370765779014113"
+      data-ad-slot="3021985784"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section>
+    <h2>よくある質問</h2>
+    <details class="faq-item">
+      <summary>ふるさと納税の上限額（控除上限額）とは何ですか？</summary>
+      <p>自己負担2,000円を除いた全額が所得税・住民税から差し引かれる、寄附額の上限の目安です。上限を超えて寄附した分は控除されず、ただの自己負担になります。上限は年収や家族構成、社会保険料、ほかの控除によって決まります。</p>
+    </details>
+    <details class="faq-item">
+      <summary>令和8年（2026年）は上限額が変わりますか？</summary>
+      <p>令和8年分は所得税の基礎控除（最大104万円）と給与所得控除の最低額（74万円）が引き上げられました。住民税の基礎控除は43万円のままなので、上限額の土台になる住民税の所得割はほとんど変わりません。ただし所得税率が下がる人（例: 年収500万円の独身で10%→5%）は、住民税が負担する割合が増えるため、上限額が数千円下がることがあります。</p>
+    </details>
+    <details class="faq-item">
+      <summary>上限額はどうやって計算されていますか？</summary>
+      <p>「住民税所得割額 × 20% ÷（90% − 所得税率 × 1.021）＋ 2,000円」で計算しています。所得税率は、令和8年度からの地方税法のルールにもとづき「住民税の課税所得 − 人的控除の差 −（所得税の基礎控除額 − 48万円）」の金額で判定しています。所得割額は調整控除を差し引いた後の額です。</p>
+    </details>
+    <details class="faq-item">
+      <summary>ワンストップ特例と確定申告で上限額は変わりますか？</summary>
+      <p>変わりません。ワンストップ特例を使うと所得税の還付分も含めて住民税から差し引かれますが、合計の控除額は確定申告した場合と同じです。ワンストップ特例は、寄附先が5自治体以内で、確定申告をしない会社員などが使えます。申請書は寄附した翌年の1月10日（必着）までに提出します。</p>
+    </details>
+    <details class="faq-item">
+      <summary>住宅ローン控除や医療費控除があると上限額はどうなりますか？</summary>
+      <p>医療費控除やiDeCoなどの所得控除は、課税所得が減るため上限額が下がります。本ツールでは「その他の所得控除」に年間の金額を入れると反映されます。住宅ローン控除は税額控除なので本ツールでは計算していませんが、所得税から引ききれず住民税から差し引かれる場合でも、ふるさと納税の上限額への影響は小さいのが一般的です。</p>
+    </details>
+    <details class="faq-item">
+      <summary>いつまでに寄附すればいいですか？</summary>
+      <p>令和8年分の控除を受けるには、2026年12月31日までに寄附（決済）を済ませる必要があります。年末は申し込みが集中し、決済方法によっては翌年の扱いになることもあるので、余裕をもって申し込むのがおすすめです。年収が確定していない場合は、上限額ぎりぎりではなく少し余裕をもたせておくと安心です。</p>
+    </details>
+  </section>
+
+  <section class="contact-box">
+    <h2>ご意見・追加してほしい機能</h2>
+    <p class="lede" style="margin-bottom:0.9rem;">気づいたことや、あったら便利な機能があれば教えてください。</p>
+    <form id="contactForm">
+      <input type="email" id="contactEmail" placeholder="返信が必要な場合はメールアドレス（任意）">
+      <textarea id="contactMessage" placeholder="ご意見・ご要望をどうぞ" required></textarea>
+      <button type="submit" id="contactSubmit">送信する</button>
+      <p class="contact-status" id="contactStatus"></p>
+    </form>
+  </section>
+
+  <footer class="site-footer">
+    <p>本ツールは令和8年分（2026年）の所得税と、それにもとづく令和9年度の住民税で、ふるさと納税の控除上限額を計算する目安です。給与収入のみ・住民税は標準税率（10%）を前提にしています。実際の上限額は、ほかの所得や控除、お住まいの自治体の税率によって変わります。正確な内容は総務省・お住まいの市区町村・税務署でご確認ください。</p>
+    <p>あわせて使える：
+      <a href="https://webtools-labs.com/frima-tesuryo-hikaku/">フリマ手数料計算・比較ツール</a> ／
+      <a href="https://webtools-labs.com/frima-hasso-hikaku/">フリマ配送方法・送料比較ツール</a> ／
+      <a href="https://webtools-labs.com/frima-tedori-simulator/">フリマ手取りシミュレーター</a> ／
+      <a href="https://webtools-labs.com/yukyu-hiyou-keisan/">有給休暇 付与日数計算ツール</a> ／
+      <a href="https://webtools-labs.com/revolving-risoku-keisan/">リボ払い・分割払い 実質利息計算ツール</a> ／
+      <a href="https://webtools-labs.com/taishoku-yukyu-keisan/">退職時の有給消化シミュレーター</a> ／
+      <a href="https://webtools-labs.com/fuyou-no-kabe-keisan/">扶養の壁チェッカー</a> ／
+      <a href="https://webtools-labs.com/tedori-keisan/">手取り計算ツール</a> ／
+      <a href="https://webtools-labs.com/taishokukin-zei-keisan/">退職金の税金計算ツール</a> ／
+      <a href="https://webtools-labs.com/taishokugo-hoken-hikaku-keisan/">退職後の健康保険 比較シミュレーター</a> ／
+      <a href="https://webtools-labs.com/sankyu-ikuji-teate-keisan/">産休・育休手当金シミュレーター</a> ／
+      <a href="https://webtools-labs.com/zangyodai-keisan/">残業代計算ツール</a> ／
+      <a href="https://webtools-labs.com/shitsugyo-hoken-keisan/">失業保険（基本手当）シミュレーター</a> ／
+      <a href="https://webtools-labs.com/jikyu-nenshu-keisan/">時給から年収・月収を計算</a> ／
+      <a href="https://webtools-labs.com/yubin-kitte-keisan/">郵便物の切手代早見表</a> ／
+      <a href="https://webtools-labs.com/bonus-tedori-keisan/">賞与手取り計算ツール</a> ／
+      <a href="https://webtools-labs.com/shoubyou-teate-keisan/">傷病手当金計算ツール</a> ／
+      <a href="https://webtools-labs.com/juminzei-keisan/">住民税計算ツール</a> ／
+      <a href="https://webtools-labs.com/tsukin-teate-keisan/">通勤手当の非課税限度額計算ツール</a> ／
+      <a href="https://webtools-labs.com/tedori-gyakusan-keisan/">手取りから逆算する年収計算ツール</a> ／
+      <a href="https://webtools-labs.com/shakaihoken-uchiwake-keisan/">給与の社会保険料 内訳計算ツール</a> ／
+      <a href="https://webtools-labs.com/fukugyo-shinkoku-keisan/">副業の確定申告 要否チェッカー</a> ／
+      <a href="https://webtools-labs.com/nencho-kanpu-keisan/">年末調整 還付金シミュレーター</a> ／
+      <a href="https://webtools-labs.com/iryouhi-koujo-keisan/">医療費控除 計算ツール</a> ／
+      <a href="https://webtools-labs.com/frima-kakuteishinkoku-checker/">フリマの確定申告 要否チェッカー</a> ／
+      <a href="https://webtools-labs.com/ideco-setsuzei-keisan/">iDeCo（確定拠出年金）節税シミュレーター</a> ／
+      <a href="https://webtools-labs.com/tokutei-shinzoku-keisan/">特定親族特別控除 計算ツール</a> ／
+      <a href="https://webtools-labs.com/taishokubi-hikaku-keisan/">退職日シミュレーター（月末退職と前日退職の比較）</a> ／
+      <a href="https://webtools-labs.com/seimei-hoken-koujo-keisan/">生命保険料控除 計算ツール</a> ／
+      <a href="https://webtools-labs.com/saitei-chingin-checker/">最低賃金チェッカー</a>
+    </p>
+    <p>当サイトは広告を掲載する場合があります。</p>
+    <p><a href="https://webtools-labs.com/about/">運営者情報</a> ／ <a href="https://webtools-labs.com/privacy/">プライバシーポリシー</a></p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  function yen(n) { return Math.round(n).toLocaleString('ja-JP') + '円'; }
+  function floor1000(n) { return Math.floor(n / 1000) * 1000; }
+
+  // 計算ロジック（令和8年分の所得税・令和9年度の住民税）
+  var makeCalc = function makeCalc(year) {
+  function salaryDeduction(income) {
+    if (year === 'R8') {
+      if (income <= 2200000) return 740000; // 74万円の最低保障
+    } else {
+      if (income <= 1625000) return 550000;
+      if (income <= 1800000) return Math.round(income * 0.4 - 100000);
+    }
+    if (income <= 3600000) return Math.round(income * 0.3 + 80000);
+    if (income <= 6600000) return Math.round(income * 0.2 + 440000);
+    if (income <= 8500000) return Math.round(income * 0.1 + 1100000);
+    return 1950000;
+  }
+  function basicIT(total) {
+    if (year === 'R8') {
+      if (total <= 4890000) return 1040000;
+      if (total <= 6550000) return 670000;
+      if (total <= 23500000) return 620000;
+    } else {
+      if (total <= 23500000) return 480000;
+    }
+    if (total <= 24000000) return 480000;
+    if (total <= 24500000) return 320000;
+    if (total <= 25000000) return 160000;
+    return 0;
+  }
+  function basicRT(total) {
+    if (total <= 24000000) return 430000;
+    if (total <= 24500000) return 290000;
+    if (total <= 25000000) return 150000;
+    return 0;
+  }
+  // 配偶者控除（配偶者の所得が基準以下・70歳未満）。本人の合計所得で段階的に減る
+  function spouseIT(total) { return total <= 9000000 ? 380000 : total <= 9500000 ? 260000 : total <= 10000000 ? 130000 : 0; }
+  function spouseRT(total) { return total <= 9000000 ? 330000 : total <= 9500000 ? 220000 : total <= 10000000 ? 110000 : 0; }
+  // 調整控除の人的控除差（配偶者控除）
+  function spouseDiff(total) { return total <= 9000000 ? 50000 : total <= 9500000 ? 40000 : total <= 10000000 ? 20000 : 0; }
+
+  function marginalRate(t) {
+    if (t <= 1950000) return 0.05;
+    if (t <= 3300000) return 0.10;
+    if (t <= 6950000) return 0.20;
+    if (t <= 9000000) return 0.23;
+    if (t <= 18000000) return 0.33;
+    if (t <= 40000000) return 0.40;
+    return 0.45;
+  }
+
+  // p: { income, spouse(bool), general(16〜18歳・23〜69歳の扶養人数), tokutei(19〜22歳), social(社会保険料), other(その他の所得控除) }
+  return function calc(p) {
+    var total = Math.max(0, p.income - salaryDeduction(p.income)); // 給与所得＝合計所得金額とみなす
+    if (p.income <= 0) total = 0;
+    var dIT = p.social + p.other + basicIT(total) + (p.spouse ? spouseIT(total) : 0) + p.general * 380000 + p.tokutei * 630000;
+    var dRT = p.social + p.other + basicRT(total) + (p.spouse ? spouseRT(total) : 0) + p.general * 330000 + p.tokutei * 450000;
+    var taxableIT = Math.floor(Math.max(0, total - dIT) / 1000) * 1000;
+    var taxableRT = Math.floor(Math.max(0, total - dRT) / 1000) * 1000;
+    var diff = 50000 + (p.spouse ? spouseDiff(total) : 0) + p.general * 50000 + p.tokutei * 180000; // 人的控除差の合計
+    // 特例控除の割合を決める基準額＝課税総所得金額−人的控除差の合計−（所得税の基礎控除額−48万円）（令和8年度以降の地方税法）
+    var rateBase = taxableRT - diff - Math.max(0, basicIT(total) - 480000);
+    var rate = rateBase >= 0 ? marginalRate(rateBase) : 0;
+    var shotokuwari = taxableRT * 0.10;
+    // 調整控除（合計所得2,500万円以下）
+    var adj = 0;
+    if (total <= 25000000 && taxableRT > 0) {
+      if (taxableRT <= 2000000) adj = Math.min(diff, taxableRT) * 0.05;
+      else adj = Math.max((diff - (taxableRT - 2000000)) * 0.05, 2500);
+    }
+    var shotokuwariAdj = Math.max(0, shotokuwari - adj);
+    var limit = shotokuwariAdj > 0 ? shotokuwariAdj * 0.2 / (0.9 - rate * 1.021) + 2000 : 0;
+    return { total: total, rateBase: rateBase, taxableIT: taxableIT, taxableRT: taxableRT, rate: rate, shotokuwari: shotokuwariAdj, limit: limit };
+  };
+};
+  var calc = makeCalc('R8');
+
+  var incomeInput = document.getElementById('income');
+  var socialInput = document.getElementById('social');
+  var spouseInput = document.getElementById('spouse');
+  var generalInput = document.getElementById('general');
+  var tokuteiInput = document.getElementById('tokutei');
+  var otherInput = document.getElementById('other');
+  var summaryCards = document.getElementById('summaryCards');
+  var resultBody = document.getElementById('resultBody');
+  var shareX = document.getElementById('shareX');
+  var shareLine = document.getElementById('shareLine');
+  var shareFb = document.getElementById('shareFb');
+  var shareHatena = document.getElementById('shareHatena');
+
+  function setShareLinks(text, url) {
+    shareX.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+    shareLine.href = 'https://line.me/R/msg/text/?' + encodeURIComponent(text + '\n' + url);
+    shareFb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '&quote=' + encodeURIComponent(text);
+    shareHatena.href = 'https://b.hatena.ne.jp/entry/panel/?url=' + encodeURIComponent(url) + '&title=' + encodeURIComponent(text);
+  }
+
+  function num(el) { return Math.max(0, Math.floor(Number(el.value) || 0)); }
+
+  function render() {
+    var income = num(incomeInput);
+    var social = socialInput.value === '' ? Math.round(income * 0.15) : num(socialInput);
+    var r = calc({ income: income, spouse: spouseInput.checked, general: num(generalInput), tokutei: num(tokuteiInput), social: social, other: num(otherInput) });
+    var limit = floor1000(r.limit);
+
+    if (limit <= 2000) {
+      summaryCards.innerHTML = '<div class="summary-card"><div class="label">上限額の目安</div><div class="value">ほぼ0円</div><div class="sub">住民税の所得割がかからない（またはごく少ない）ため、ふるさと納税をしても税金はほとんど戻りません</div></div>';
+      resultBody.innerHTML = '<tr><td>住民税の所得割額（調整控除後）</td><td class="num">' + yen(r.shotokuwari) + '</td></tr>';
+      setShareLinks('ふるさと納税の上限額を計算してみました\n\nふるさと納税 上限額シミュレーター', 'https://webtools-labs.com/furusato-nozei-keisan/');
+      return;
+    }
+    var base = limit - 2000;
+    var it = base * r.rate * 1.021;
+    var rtBasic = base * 0.10;
+    var rtSpecial = base - it - rtBasic;
+
+    summaryCards.innerHTML =
+      '<div class="summary-card"><div class="label">ふるさと納税の上限額（目安）</div><div class="value">約' + yen(limit) + '</div><div class="sub">この金額までなら自己負担は2,000円</div></div>' +
+      '<div class="summary-card"><div class="label">税金から差し引かれる額</div><div class="value">' + yen(base) + '</div><div class="sub">所得税 約' + yen(it) + '＋住民税 約' + yen(rtBasic + rtSpecial) + '</div></div>' +
+      '<div class="summary-card"><div class="label">判定された所得税率</div><div class="value">' + Math.round(r.rate * 100) + '%</div><div class="sub">住民税の特例分の計算に使う税率（令和8年分の区分）</div></div>';
+
+    resultBody.innerHTML =
+      '<tr><td>所得税の還付（確定申告の場合）</td><td class="num">' + yen(it) + '</td></tr>' +
+      '<tr><td>住民税の減額（基本分 10%）</td><td class="num">' + yen(rtBasic) + '</td></tr>' +
+      '<tr><td>住民税の減額（特例分・所得割の20%が上限）</td><td class="num">' + yen(rtSpecial) + '</td></tr>' +
+      '<tr><td>自己負担</td><td class="num">2,000円</td></tr>' +
+      '<tr class="total"><td>寄附額の合計</td><td class="num">' + yen(limit) + '</td></tr>';
+
+    var shareText = 'ふるさと納税の上限額を計算したら、約' + yen(limit) + 'でした（自己負担2,000円）\n\nふるさと納税 上限額シミュレーター';
+    setShareLinks(shareText, 'https://webtools-labs.com/furusato-nozei-keisan/');
+  }
+
+  [incomeInput, socialInput, generalInput, tokuteiInput, otherInput].forEach(function (el) { el.addEventListener('input', render); });
+  spouseInput.addEventListener('change', render);
+  render();
+
+  var WEB3FORMS_ACCESS_KEY = '4551c9fd-4327-4bd4-97e0-8b93d85fd077';
+  var contactForm = document.getElementById('contactForm');
+  var contactStatus = document.getElementById('contactStatus');
+  var contactSubmit = document.getElementById('contactSubmit');
+
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    contactSubmit.disabled = true;
+    contactStatus.textContent = '送信中...';
+    contactStatus.className = 'contact-status';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: 'ふるさと納税 上限額シミュレーターへのお問い合わせ',
+        email: document.getElementById('contactEmail').value || 'noreply@example.com',
+        message: document.getElementById('contactMessage').value
+      })
+    }).then(function (res) { return res.json(); }).then(function (data) {
+      contactSubmit.disabled = false;
+      if (data.success) {
+        contactStatus.textContent = '送信しました。ありがとうございます！';
+        contactStatus.className = 'contact-status ok';
+        contactForm.reset();
+      } else {
+        contactStatus.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+        contactStatus.className = 'contact-status err';
+      }
+    }).catch(function () {
+      contactSubmit.disabled = false;
+      contactStatus.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+      contactStatus.className = 'contact-status err';
+    });
+  });
+})();
+</script>
+</body>
+</html>
