@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ふるさと納税 上限額シミュレーター【令和8年・2026年】年収と家族構成から控除上限を計算</title>
-<meta name="description" content="年収と家族構成を入れるだけで、ふるさと納税で自己負担2,000円に収まる寄附額の上限（控除上限額）の目安が分かる無料ツール。令和8年分の基礎控除・給与所得控除の引き上げと、令和8年度からの住民税の特例控除の計算方法に対応。所得税・住民税の控除の内訳も表示します。">
+<meta name="description" content="年収と家族構成を入れるだけで、ふるさと納税で自己負担2,000円に収まる寄附額の上限（控除上限額）の目安が分かる無料ツール。令和8年分の基礎控除・給与所得控除の引き上げと、令和8年度からの住民税の特例控除の計算方法に対応。所得税・住民税の控除の内訳も表示します。年収150万〜1,200万円の早見表と、年収いくらから得かの目安つき。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://webtools-labs.com/furusato-nozei-keisan/">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2370765779014113" crossorigin="anonymous"></script>
@@ -93,6 +93,16 @@
       "@type": "Question",
       "name": "住宅ローン控除や医療費控除があると上限額はどうなりますか？",
       "acceptedAnswer": { "@type": "Answer", "text": "医療費控除やiDeCoなどの所得控除は、課税所得が減るため上限額が下がります。本ツールでは「その他の所得控除」に年間の金額を入れると反映されます。住宅ローン控除は税額控除なので本ツールでは計算していませんが、所得税から引ききれず住民税から差し引かれる場合でも、ふるさと納税の上限額への影響は小さいのが一般的です。" }
+    },
+    {
+      "@type": "Question",
+      "name": "ふるさと納税は年収いくらから得になりますか？（最低年収の目安）",
+      "acceptedAnswer": { "@type": "Answer", "text": "独身で社会保険料を年収の15%とした場合、年収約138万円を超えると上限額が自己負担の2,000円を上回り、年収約183万円で上限額は約1万円、年収200万円で約1.3万円になります。年収130万円以下では住民税の所得割がかからないため、ふるさと納税をしても控除はほとんど受けられません。アルバイトで社会保険に入っていない学生などは社会保険料の欄に実際の金額（0円など）を入れて計算してください。" }
+    },
+    {
+      "@type": "Question",
+      "name": "生命保険料控除があると上限額はどうなりますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "上限額は住民税の所得割で決まるため、生命保険料控除があると少し下がります。本ツールでは「その他の所得控除」に住民税の生命保険料控除額（最大7万円）を入れてください。年収500万円・独身の場合、住民税の生命保険料控除が7万円あると、上限額の目安は約57,000円から約55,000円に下がります。控除額は生命保険料控除 計算ツールで計算できます。" }
     },
     {
       "@type": "Question",
@@ -353,12 +363,15 @@ footer.site-footer a { color: var(--accent); }
   </div>
 
   <section>
-    <h2>年収・家族構成別の上限額 早見表（令和8年分）</h2>
+    <h2>年収・家族構成別の上限額 早見表（年収150万〜1,200万円・令和8年分）</h2>
     <p>本ツールと同じ計算方法で、社会保険料を年収の15%として計算した目安です。「夫婦」は配偶者控除の対象になる配偶者がいる場合、「共働き」は配偶者に収入があり扶養に入っていない場合です。</p>
     <div class="ref-table" style="overflow-x:auto">
       <table>
         <thead><tr><th>年収</th><th class="num">独身・共働き</th><th class="num">夫婦</th><th class="num">共働き＋子1人（高校生）</th><th class="num">夫婦＋子1人（高校生）</th><th class="num">夫婦＋子1人（大学生）</th></tr></thead>
         <tbody>
+          <tr><td>150万円</td><td class="num">3,000円</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>200万円</td><td class="num">13,000円</td><td class="num">5,000円</td><td class="num">5,000円</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>250万円</td><td class="num">21,000円</td><td class="num">12,000円</td><td class="num">12,000円</td><td class="num">4,000円</td><td class="num">—</td></tr>
           <tr><td>300万円</td><td class="num">28,000円</td><td class="num">19,000円</td><td class="num">19,000円</td><td class="num">11,000円</td><td class="num">6,000円</td></tr>
           <tr><td>350万円</td><td class="num">34,000円</td><td class="num">26,000円</td><td class="num">26,000円</td><td class="num">18,000円</td><td class="num">13,000円</td></tr>
           <tr><td>400万円</td><td class="num">42,000円</td><td class="num">33,000円</td><td class="num">33,000円</td><td class="num">25,000円</td><td class="num">21,000円</td></tr>
@@ -375,7 +388,7 @@ footer.site-footer a { color: var(--accent); }
         </tbody>
       </table>
     </div>
-    <p class="disclaimer">高校生は一般の扶養親族（16〜18歳）、大学生は19〜22歳の特定扶養親族として計算しています。中学生以下の子どもは上限額に影響しません。年収が約1,195万円を超える（合計所得金額が1,000万円を超える）と配偶者控除が受けられなくなるため、「夫婦」と「独身・共働き」の上限額が同じになります。</p>
+    <p class="disclaimer">高校生は一般の扶養親族（16〜18歳）、大学生は19〜22歳の特定扶養親族として計算しています。中学生以下の子どもは上限額に影響しません。「—」は住民税の所得割がかからない、または少なすぎて、自己負担2,000円を超える控除が受けられない条件です。年収が約1,195万円を超える（合計所得金額が1,000万円を超える）と配偶者控除が受けられなくなるため、「夫婦」と「独身・共働き」の上限額が同じになります。</p>
   </section>
 
   <section>
@@ -536,6 +549,14 @@ footer.site-footer a { color: var(--accent); }
     <details class="faq-item">
       <summary>住宅ローン控除や医療費控除があると上限額はどうなりますか？</summary>
       <p>医療費控除やiDeCoなどの所得控除は、課税所得が減るため上限額が下がります。本ツールでは「その他の所得控除」に年間の金額を入れると反映されます。住宅ローン控除は税額控除なので本ツールでは計算していませんが、所得税から引ききれず住民税から差し引かれる場合でも、ふるさと納税の上限額への影響は小さいのが一般的です。</p>
+    </details>
+    <details class="faq-item">
+      <summary>ふるさと納税は年収いくらから得になりますか？（最低年収の目安）</summary>
+      <p>独身で社会保険料を年収の15%とした場合、年収約138万円を超えると上限額が自己負担の2,000円を上回り、年収約183万円で上限額は約1万円、年収200万円で約1.3万円になります。年収130万円以下では住民税の所得割がかからないため、ふるさと納税をしても控除はほとんど受けられません。アルバイトで社会保険に入っていない学生などは社会保険料の欄に実際の金額（0円など）を入れて計算してください。</p>
+    </details>
+    <details class="faq-item">
+      <summary>生命保険料控除があると上限額はどうなりますか？</summary>
+      <p>上限額は住民税の所得割で決まるため、生命保険料控除があると少し下がります。本ツールでは「その他の所得控除」に住民税の生命保険料控除額（最大7万円）を入れてください。年収500万円・独身の場合、住民税の生命保険料控除が7万円あると、上限額の目安は約57,000円から約55,000円に下がります。控除額は<a href="https://webtools-labs.com/seimei-hoken-koujo-keisan/">生命保険料控除 計算ツール</a>で計算できます。</p>
     </details>
     <details class="faq-item">
       <summary>いつまでに寄附すればいいですか？</summary>
